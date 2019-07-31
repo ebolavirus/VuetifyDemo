@@ -2,7 +2,7 @@
     <v-navigation-drawer
       app
       v-model="drawer"
-      color="primary"
+      dark
     >
       <v-list>
         <v-list-item
