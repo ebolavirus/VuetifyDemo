@@ -21,6 +21,21 @@
       <v-btn text>
         <span class="mr-2">注销</span>
       </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{on}">
+          <v-btn text v-on="on">
+            <span class="mr-2">高级▽</span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in baritems"
+            :key="index"
+          >
+            <v-list-item-title>{{item.title}}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-btn text>
         <span class="mr-2">帮助</span>
       </v-btn>
@@ -56,10 +71,10 @@ export default {
     }
   },
   data: () => ({
-    items: [
-      {title: 'Dashboard', icon: 'dashboard'},
-      {title: 'Account', icon: 'account_box'},
-      {title: 'Admin', icon: 'gavel'}
+    baritems: [
+      {title: '加签', icon: 'dashboard'},
+      {title: '转办', icon: 'account_box'},
+      {title: '通知', icon: 'gavel'}
     ]
   }),
   methods: {
