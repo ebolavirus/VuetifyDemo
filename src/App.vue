@@ -1,10 +1,17 @@
 <template>
   <v-app>
-    <Sidedrawer />
+    <Sidedrawer
+      v-model="draweropen"
+    />
     <v-app-bar app>
+      <v-btn
+        @click="draweropen = !draweropen"
+        icon>
+        <v-app-bar-nav-icon />
+      </v-btn>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>Vuetify版</span>
+        <span class="font-weight-light">信息服务申请DEMO</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
@@ -33,6 +40,7 @@ export default {
     Sidedrawer
   },
   data: () => ({
+    draweropen: true
   }),
 };
 </script>

@@ -22,8 +22,27 @@
 
 <script>
 export default {
+  model: {
+    prop: 'drawerprop',
+    event: 'itemChanged'
+  },
+  props: {
+    drawerprop: {
+      type: Boolean,
+      default: true
+    }
+  },
+  computed: {
+    drawer: {
+      get () {
+        return this.drawerprop
+      },
+      set (value) {
+        this.$emit('itemChanged', value);
+      }
+    }
+  },
   data: () => ({
-    drawer: true,
     items: [
       {title: 'Dashboard', icon: 'dashboard'},
       {title: 'Account', icon: 'account_box'},
