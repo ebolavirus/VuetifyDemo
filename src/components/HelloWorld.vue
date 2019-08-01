@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-xl>
     <v-layout wrap text-center>
-      <v-expansion-panels v-model="panel" multiple>
+      <v-expansion-panels v-model="panel" multiple >
         <v-expansion-panel>
           <v-expansion-panel-header>服务描述</v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -17,6 +17,7 @@
                 <v-radio label="紧急" value="0"></v-radio>
               </v-radio-group>
             </v-flex>
+            <v-flex>
               <v-text-field label="*办公室位置"></v-text-field>
               <v-textarea label="服务内容"></v-textarea>
             </v-flex>
@@ -46,6 +47,8 @@
 
 <script>
 export default {
-  data: () => ({})
+  data: () => ({
+    panel: [0,1,2,3,4]
+  })
 };
 </script>
