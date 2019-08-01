@@ -4,14 +4,27 @@
       v-model="drawer"
       dark
     >
+      <v-expansion-panels
+        v-model="panel"
+        :accordion="true"
+        :multiple="true"
+      >
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            基本信息
+          </v-expansion-panel-header>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            审批历史
+          </v-expansion-panel-header>
+        </v-expansion-panel>
+      </v-expansion-panels>
       <v-list>
         <v-list-item
           v-for="item in items"
           :key="item.title"
           link>
-          <!-- <v-list-item-icon>
-            <v-icon>{{item.icon}}</v-icon>
-          </v-list-item-icon> -->
           <v-list-item-content>
             <v-list-item-title>{{item.title}}</v-list-item-title>
           </v-list-item-content>
@@ -43,6 +56,7 @@ export default {
     }
   },
   data: () => ({
+    panel: [0,1],
     items: [
       {title: 'Dashboard', icon: 'dashboard'},
       {title: 'Account', icon: 'account_box'},

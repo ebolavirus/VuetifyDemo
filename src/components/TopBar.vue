@@ -24,7 +24,7 @@
       <v-menu offset-y>
         <template v-slot:activator="{on}">
           <v-btn text v-on="on">
-            <span class="mr-2">高级▽</span>
+            <span class="mr-2">高级▾</span>
           </v-btn>
         </template>
         <v-list>
