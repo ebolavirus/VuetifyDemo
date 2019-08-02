@@ -3,12 +3,18 @@
     <v-layout wrap text-center>
       <v-expansion-panels v-model="panel" multiple>
         <v-expansion-panel>
-          <v-expansion-panel-header>服务描述</v-expansion-panel-header>
+          <v-expansion-panel-header>
+            服务描述
+            <template v-slot:actions>
+              <v-icon color="primary">$vuetify.icons.expand</v-icon>
+            </template>
+          </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <v-flex xs12 sm12 md12>
+            <v-layout wrap>
+            <v-flex xs4>
               <v-text-field label="*服务类型" append-icon="mdi-anchor"></v-text-field>
             </v-flex>
-            <v-flex xs12 sm12 md12>
+            <v-flex xs4>
               <v-radio-group v-model="row" row>
                 <template v-slot:label>
                   <div>*紧急程度：</div>
@@ -17,10 +23,14 @@
                 <v-radio label="紧急" value="0"></v-radio>
               </v-radio-group>
             </v-flex>
-            <v-flex>
+            <v-flex xs4>
               <v-text-field label="*办公室位置"></v-text-field>
-              <v-textarea label="服务内容"></v-textarea>
             </v-flex>
+            <v-flex xs12>
+              <header>服务内容</header>
+              <v-text-field label="*办公室位置"></v-text-field>
+            </v-flex>
+            </v-layout>
           </v-expansion-panel-content>
           <!-- IT顾问评估 -->
         </v-expansion-panel>
