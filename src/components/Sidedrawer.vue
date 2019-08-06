@@ -103,13 +103,13 @@
         }
       ],
       headers: [{
-          text: 'Dessert (100g serving)',
+          text: '',
           align: 'left',
           sortable: false,
           value: 'name',
         },
         {
-          text: 'Calories',
+          text: '',
           value: 'calories'
         }
       ],
