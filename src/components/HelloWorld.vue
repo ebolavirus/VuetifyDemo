@@ -53,13 +53,15 @@
                 <v-select :items="serviceTypes" label="服务分类" xs6 sm3 md3></v-select>
               </v-flex>
               <v-flex xs4>
-                <v-text-field label="预估费用" suffix="元"></v-text-field>
+                <v-text-field label="预估费用" type="number" suffix="元"></v-text-field>
               </v-flex>
               <v-flex xs4>
-                <v-text-field label="预估实施" suffix="人天"></v-text-field>
+                <v-text-field label="实施日期" type="date"></v-text-field>
               </v-flex>
               <v-flex xs6>
-                <v-text-field label="办理人员名称" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="办理人员名称" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
                 <v-text-field label="通知人员" append-icon="mdi-anchor"></v-text-field>
@@ -76,7 +78,9 @@
           <v-expansion-panel-content>
             <v-layout wrap>
               <v-flex xs6>
-                <v-text-field label="办理人员名称" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="办理人员名称" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
                 <v-text-field label="通知人员" append-icon="mdi-anchor"></v-text-field>
@@ -149,15 +153,19 @@
 
 <script>
   import TypeDialog from './TypeDialog';
+  import HumanDialog from './HumanDialog';
   export default {
     components: {
-      TypeDialog
+      TypeDialog,
+      HumanDialog
     },
     data: () => ({
       panel: [0, 1, 2, 3, 4, 5, 6],
       serviceTypes: ["type1", "type2", "type3", "type4", "type5"],
       typeValue: '',
-      typedialog: false
+      dutyValue: '',
+      typedialog: false,
+      dutydialog: false
     }),
     methods: {
       typeSelect() {
@@ -165,9 +173,15 @@
         // this.typeValue = aaa;
         this.typedialog = !this.typedialog;
       },
+      dutySelect() {
+        this.dutydialog = !this.dutydialog;
+      },
       typeDialogSelected(value) {
         console.log('bbbbb', value);
         this.typeValue = value.name;
+      },
+      dutyDialogSelected(value) {
+        console.log('cccc', value);
       }
     }
   };
