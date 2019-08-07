@@ -43,7 +43,7 @@
         <v-card-text>
           <v-layout wrap>
             <v-flex xs12>
-              <v-textarea label="审批意见">同意</v-textarea>
+              <v-textarea label="审批意见" counter="300" clearable>同意</v-textarea>
             </v-flex>
             <v-flex xs6>
               <v-text-field label="下一任务" value="IT顾问评估"></v-text-field>
