@@ -145,7 +145,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <iframe
-              src="http://bpms.whchem.com/teamworks/fastExecuteServiceByName.jsp?processApp=EBCOMMA&serviceName=UI_Attachment&tw.local.instanceId=PIID-2d2bec22-f5d6-40e0-9eb9-b40a963d244e&tw.local.allowCreate=false&tw.local.allowUpdate=false&tw.local.allowDelete=false&tw.local.allowUpdateOthers=false&tw.local.allowDeleteOthers=false"
+              src="http://bpmqas02.whchem.com/teamworks/fastExecuteServiceByName.jsp?processApp=EBCOMMA&serviceName=UI_Attachment&tw.local.instanceId=PIID-2d2bec22-f5d6-40e0-9eb9-b40a963d244e&tw.local.allowCreate=false&tw.local.allowUpdate=false&tw.local.allowDelete=false&tw.local.allowUpdateOthers=false&tw.local.allowDeleteOthers=false"
               style="width: 100%">
             </iframe>
           </v-expansion-panel-content>
