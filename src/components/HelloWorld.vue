@@ -64,7 +64,9 @@
                 <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
-                <v-text-field label="通知人员" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="通知人员" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs12>
                 <v-textarea label="评估意见"></v-textarea>
@@ -83,7 +85,9 @@
                 <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
-                <v-text-field label="通知人员" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="通知人员" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
                 <v-text-field label="实际费用"></v-text-field>

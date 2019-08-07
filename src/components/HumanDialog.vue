@@ -1,27 +1,39 @@
 <template>
-  <v-dialog v-model="intypedialog" persistent max-width="900px">
+  <v-dialog v-model="intypedialog" fullscreen hide-overlay>
+    <!-- transition="dialog-bottom-transition"> -->
     <v-card>
-      <v-card-title>
-        <span>变更类型选择列表</span>
-      </v-card-title>
-      <v-card-text>
-        <small>*特别提醒：正确地选择变更类型将大大加快流程处理速度，如果不清楚该选择何种变更，请致电0535-3388800。</small>
-        <v-container grid-list-md>
-          <v-layout wrap>
-            <v-flex xs12>
-              <v-data-table :headers="typeheaders" :items="typedesserts" :items-per-page="5" class="elevation-1">
-                <template v-slot:item.action="{ item }">
-                  <v-btn class="mb-2" @click="editItem(item)">选择</v-btn>
-                </template>
-              </v-data-table>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
+      <v-toolbar dark color="primary">
+        <v-btn icon dark @click="intypedialog = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-toolbar-title>选择人员</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="intypedialog = false">关闭</v-btn>
-      </v-card-actions>
+        <v-toolbar-items>
+          <v-btn dark text @click="intypedialog = false">确认</v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <v-container grid-list-md>
+        <v-layout>
+          <v-flex xs3>
+            <v-card height="500">
+              <v-card-text>
+                <v-text-field label="搜索部门" append-outer-icon="mdi-file-document-box-search" value="信息中心" readonly>
+                </v-text-field>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex xs6>
+            <v-card height="500">
+              <v-card-text>LAYOUT TEST2</v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex xs3>
+            <v-card height="500">
+              <v-card-text>LAYOUT TEST3</v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-card>
   </v-dialog>
 </template>
@@ -143,7 +155,10 @@
           protein: 7,
           iron: '6%',
         },
-      ]
+      ],
+      notifications: false,
+      sound: true,
+      widgets: false,
     }),
     computed: {
       intypedialog: {

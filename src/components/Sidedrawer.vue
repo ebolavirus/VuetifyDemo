@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app v-model="drawer" dark>
+  <v-navigation-drawer app v-model="drawer" dark width="400">
     <v-expansion-panels v-model="panel" :accordion="true" :multiple="true">
       <v-expansion-panel>
         <v-expansion-panel-header>
