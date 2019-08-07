@@ -11,10 +11,12 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-layout wrap>
-              <v-flex xs6>
-                <v-text-field label="*服务类型" append-icon="mdi-anchor"></v-text-field>
+              <v-flex xs4>
+                <v-text-field label="*服务类型" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="typeSelect" v-model="typeValue"></v-text-field>
+                <TypeDialog v-model="typedialog" @dialogSelected="typeDialogSelected" />
               </v-flex>
-              <v-flex xs6>
+              <v-flex xs4>
                 <v-radio-group v-model="row" row>
                   <template v-slot:label>
                     <div>*紧急程度：</div>
@@ -23,7 +25,7 @@
                   <v-radio label="紧急" value="0"></v-radio>
                 </v-radio-group>
               </v-flex>
-              <v-flex xs12>
+              <v-flex xs4>
                 <v-text-field label="*办公室位置"></v-text-field>
               </v-flex>
               <v-flex xs12>
@@ -51,16 +53,20 @@
                 <v-select :items="serviceTypes" label="服务分类" xs6 sm3 md3></v-select>
               </v-flex>
               <v-flex xs4>
-                <v-text-field label="预估费用"></v-text-field>
+                <v-text-field label="预估费用" type="number" suffix="元"></v-text-field>
               </v-flex>
               <v-flex xs4>
-                <v-text-field label="预估实施"></v-text-field>
+                <v-text-field label="实施日期" type="date"></v-text-field>
               </v-flex>
               <v-flex xs6>
-                <v-text-field label="办理人员名称" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="办理人员名称" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
-                <v-text-field label="通知人员" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="通知人员" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs12>
                 <v-textarea label="评估意见"></v-textarea>
@@ -74,10 +80,14 @@
           <v-expansion-panel-content>
             <v-layout wrap>
               <v-flex xs6>
-                <v-text-field label="办理人员名称" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="办理人员名称" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
-                <v-text-field label="通知人员" append-icon="mdi-anchor"></v-text-field>
+                <v-text-field label="通知人员" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
+                <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs6>
                 <v-text-field label="实际费用"></v-text-field>
@@ -146,10 +156,37 @@
 </template>
 
 <script>
+  import TypeDialog from './TypeDialog';
+  import HumanDialog from './HumanDialog';
   export default {
+    components: {
+      TypeDialog,
+      HumanDialog
+    },
     data: () => ({
       panel: [0, 1, 2, 3, 4, 5, 6],
-      serviceTypes: ["type1", "type2", "type3", "type4", "type5"]
-    })
+      serviceTypes: ["type1", "type2", "type3", "type4", "type5"],
+      typeValue: '',
+      dutyValue: '',
+      typedialog: false,
+      dutydialog: false
+    }),
+    methods: {
+      typeSelect() {
+        // let aaa = 1;
+        // this.typeValue = aaa;
+        this.typedialog = !this.typedialog;
+      },
+      dutySelect() {
+        this.dutydialog = !this.dutydialog;
+      },
+      typeDialogSelected(value) {
+        console.log('bbbbb', value);
+        this.typeValue = value.name;
+      },
+      dutyDialogSelected(value) {
+        console.log('cccc', value);
+      }
+    }
   };
 </script>
