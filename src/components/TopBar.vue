@@ -13,6 +13,9 @@
     <v-btn text @click="saveAction()">
       <span class="mr-2">保存</span>
     </v-btn>
+    <v-btn text @click="rejectAction()">
+      <span class="mr-2">驳回</span>
+    </v-btn>
     <v-btn text @click="cancelAction()">
       <span class="mr-2">注销</span>
     </v-btn>
@@ -44,7 +47,7 @@
         <v-card-text>
           <v-layout wrap>
             <v-flex xs12>
-              <v-textarea label="审批意见" counter="300" clearable>同意</v-textarea>
+              <v-textarea label="审批意见" counter="300" value="同意" clearable></v-textarea>
             </v-flex>
             <v-flex xs6>
               <v-text-field label="下一任务" value="IT顾问评估"></v-text-field>
@@ -95,13 +98,31 @@
     </v-dialog>
     <!-- 保存业务数据 -->
     <v-alert dismissible elevation="2" v-if="saved" type="info">保存业务数据成功!</v-alert>
+    <!-- 驳回对话框 -->
+    <v-dialog v-model="dialog5" max-width="800px">
+      <v-card>
+        <v-card-title>任务驳回</v-card-title>
+        <v-card-text>
+          <v-layout wrap>
+            <v-flex xs12 sm6>
+              <v-select :items="['起草@Draft']" label="驳回到环节" required></v-select>
+            </v-flex>
+            <v-flex xs12>
+              <v-textarea label="审批意见" counter="300" value="同意" clearable required></v-textarea>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" text @click="dialog5 = false">关闭</v-btn>
+          <v-btn color="primary" text @click="dialog5 = false">驳回</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- 注销流程 -->
     <v-dialog v-model="dialog4" max-width="300px">
       <v-card>
         <v-card-title>注销流程</v-card-title>
-        <v-card-text>
-          您确定要注销当前单据吗？
-        </v-card-text>
+        <v-card-text>您确定要注销当前单据吗？</v-card-text>
         <v-card-actions>
           <v-btn color="primary" text @click="dialog4 = false">关闭</v-btn>
           <v-btn color="primary" text @click="dialog4 = false">注销</v-btn>
@@ -143,6 +164,8 @@ export default {
     dialog3: false,
     // 注销对话框开关
     dialog4: false,
+    // 驳回对话框开关
+    dialog5: false,
     saved: false,
     apHeaders: [
       {
@@ -180,7 +203,10 @@ export default {
       this.saved = true;
     },
     cancelAction() {
-      this.dialog4 = true
+      this.dialog4 = true;
+    },
+    rejectAction() {
+      this.dialog5 = true;
     }
   }
 };
