@@ -186,6 +186,7 @@
       },
       dutyDialogSelected(value) {
         console.log('cccc', value);
+        this.dutyValue = value;
       }
     }
   };

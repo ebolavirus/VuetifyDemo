@@ -9,7 +9,7 @@
         <v-toolbar-title>选择人员</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark text @click="intypedialog = false">确认</v-btn>
+          <v-btn dark text @click="editItem">确认</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <v-container grid-list-md>
@@ -36,7 +36,17 @@
           </v-flex>
           <v-flex xs3>
             <v-card height="500">
-              <v-card-text>LAYOUT TEST3</v-card-text>
+              <v-card-title>选中人员列表</v-card-title>
+              <v-card-text>
+                <v-data-table dense :headers="typeheaders2" :items="listSelectValue" :items-per-page="1000" show-select
+                  item-key="name" hide-default-header hide-default-footer no-data-text="没有人员选中" height="300"
+                  v-model="listSelectValue2" class="elevation-1">
+                </v-data-table>
+                <div class="text-center pt-2">
+                  <v-btn color="primary" class="mr-2" @click="removeItem(0)">移除选中</v-btn>
+                  <v-btn color="primary" @click="removeItem(1)">移除全部</v-btn>
+                </div>
+              </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
@@ -76,6 +86,10 @@
           value: "carbs"
         }
       ],
+      typeheaders2: [{
+        text: "姓名",
+        value: "calories"
+      }],
       typedesserts: [{
           name: "zmmo",
           calories: '莫泽梦',
@@ -258,7 +272,8 @@
       notifications: false,
       sound: true,
       widgets: false,
-      listSelectValue: []
+      listSelectValue: [],
+      listSelectValue2: []
     }),
     watch: {
       listSelectValue(to, from) {
@@ -276,10 +291,19 @@
       }
     },
     methods: {
-      editItem(aItem) {
-        console.log("aaaaa", aItem);
-        this.$emit("dialogSelected", aItem);
+      editItem() {
+        let valueresult = '';
+        for (let i in this.listSelectValue) {
+          console.log(i);
+          valueresult += this.listSelectValue[i].calories;
+          valueresult += ','
+        }
+        this.$emit("dialogSelected", valueresult);
         this.intypedialog = false;
+      },
+      removeItem(key, value) {
+        console.log(key, value);
+        this.listSelectValue = [];
       }
     }
   };
