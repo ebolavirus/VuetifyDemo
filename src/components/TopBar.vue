@@ -41,20 +41,33 @@
       <v-card>
         <v-card-title>审批人</v-card-title>
         <v-card-text>
-          <v-textarea label="审批意见">同意</v-textarea>
-          <v-text-field label="下一任务" value="IT顾问评估"></v-text-field>
-          <v-text-field label="任务类型" value="单一签核"></v-text-field>
-          <v-data-table
-            :headers="apHeaders"
-            :items="approvers"
-            :items-per-page="5"
-            class="elevation-1"
-            single-select="true"
-            show-select
-          ></v-data-table>
+          <v-layout wrap>
+            <v-flex xs12>
+              <v-textarea label="审批意见">同意</v-textarea>
+            </v-flex>
+            <v-flex xs6>
+              <v-text-field label="下一任务" value="IT顾问评估"></v-text-field>
+            </v-flex>
+            <v-flex xs6>
+              <v-text-field label="任务类型" value="单一签核"></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-data-table
+                :headers="apHeaders"
+                :items="approvers"
+                :items-per-page="5"
+                class="elevation-1"
+                single-select
+                v-model="selectedApprover"
+                item-key="name"
+                show-select
+              ></v-data-table>
+            </v-flex>
+          </v-layout>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" text @click="dialog2 = false">Close</v-btn>
+          <v-btn color="primary" text @click="dialog2 = false">关闭</v-btn>
+          <v-btn color="primary" text @click="dialog2 = false">提交</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -91,24 +104,25 @@ export default {
     ],
     dialog2: false,
     apHeaders: [
-          {
-            text: '名称',
-            align: 'left',
-            sortable: false,
-            value: 'name',
-          },
-          { text: '部门', value: 'dept' }
-        ],
+      {
+        text: "名称",
+        align: "left",
+        sortable: false,
+        value: "name"
+      },
+      { text: "部门", value: "dept" }
+    ],
     approvers: [
-          {
-            name: '何凭',
-            dept: '/万华集团/万华化学/信息中心/基础设施',
-          },
-          {
-            name: '王海洋',
-            dept: '/万华集团/万华化学/信息中心/基础设施',
-          }
-        ]
+      {
+        name: "何凭",
+        dept: "/万华集团/万华化学/信息中心/基础设施"
+      },
+      {
+        name: "王海洋",
+        dept: "/万华集团/万华化学/信息中心/基础设施"
+      }
+    ],
+    selectedApprover: []
   }),
   methods: {
     drawerAction() {
