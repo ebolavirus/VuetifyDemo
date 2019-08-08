@@ -29,19 +29,8 @@
                 <v-text-field label="*办公室位置"></v-text-field>
               </v-flex>
               <v-flex xs4>
-                <div class="v-input v-input--is-label-active v-text-field v-text-field--is-booted">
-                  <div class="v-input__control mmsborderzero">
-                    <div class="v-input__slot mmsborderzero">
-                      <div class="v-text-field__slot">
-                        <label for="input-81" class="v-label v-label--active"
-                          style="left: 0px; right: auto; position: absolute;">*办公室位置(只读)</label>
-                        <span>AAAAA</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <TextfieldReadonly />
               </v-flex>
-
               <v-flex xs12>
                 <v-textarea label="服务内容"></v-textarea>
               </v-flex>
@@ -170,10 +159,12 @@
 <script>
   import TypeDialog from './TypeDialog';
   import HumanDialog from './HumanDialog';
+  import TextfieldReadonly from './TextfieldReadonly';
   export default {
     components: {
       TypeDialog,
-      HumanDialog
+      HumanDialog,
+      TextfieldReadonly
     },
     data: () => ({
       panel: [0, 1, 2, 3, 4, 5, 6],
@@ -205,15 +196,4 @@
   };
 </script>
 <style>
-  .v-text-field>.v-input__control>.v-input__slot:before {
-    border-style: none;
-  }
-
-  .mmsborderzero:before {
-    border-style: none;
-  }
-
-  .v-input__slot:before {
-    border-style: none;
-  }
 </style>
