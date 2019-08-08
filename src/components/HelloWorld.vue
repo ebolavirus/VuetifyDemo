@@ -28,6 +28,20 @@
               <v-flex xs4>
                 <v-text-field label="*办公室位置"></v-text-field>
               </v-flex>
+              <v-flex xs4>
+                <div class="v-input v-input--is-label-active v-text-field v-text-field--is-booted">
+                  <div class="v-input__control mmsborderzero">
+                    <div class="v-input__slot mmsborderzero">
+                      <div class="v-text-field__slot">
+                        <label for="input-81" class="v-label v-label--active"
+                          style="left: 0px; right: auto; position: absolute;">*办公室位置(只读)</label>
+                        <span>AAAAA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </v-flex>
+
               <v-flex xs12>
                 <v-textarea label="服务内容"></v-textarea>
               </v-flex>
@@ -144,9 +158,7 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <iframe
-              src="http://bpmqas02.whchem.com/teamworks/fastExecuteServiceByName.jsp?processApp=EBCOMMA&serviceName=UI_Attachment&tw.local.instanceId=PIID-2d2bec22-f5d6-40e0-9eb9-b40a963d244e&tw.local.allowCreate=false&tw.local.allowUpdate=false&tw.local.allowDelete=false&tw.local.allowUpdateOthers=false&tw.local.allowDeleteOthers=false"
-              style="width: 100%">
+            <iframe src="http://www.baidu.com" style="width: 100%">
             </iframe>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -169,7 +181,8 @@
       typeValue: '',
       dutyValue: '',
       typedialog: false,
-      dutydialog: false
+      dutydialog: false,
+      row: ''
     }),
     methods: {
       typeSelect() {
@@ -191,3 +204,16 @@
     }
   };
 </script>
+<style>
+  .v-text-field>.v-input__control>.v-input__slot:before {
+    border-style: none;
+  }
+
+  .mmsborderzero:before {
+    border-style: none;
+  }
+
+  .v-input__slot:before {
+    border-style: none;
+  }
+</style>

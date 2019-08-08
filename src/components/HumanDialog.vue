@@ -303,6 +303,7 @@
       },
       removeItem(key, value) {
         console.log(key, value);
+        console.log(this.$vuetify.breakpoint.width);
         this.listSelectValue = [];
       }
     }
