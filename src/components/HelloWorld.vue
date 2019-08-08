@@ -200,7 +200,7 @@
 <script>
 import TypeDialog from "./TypeDialog";
 import HumanDialog from "./HumanDialog";
-import TextfieldReadonly from "./TextfieldReadonly
+import TextfieldReadonly from "./TextfieldReadonly";
 import WanhuaRadio from './WanhuaRadio';
 export default {
   components: {
