@@ -17,13 +17,7 @@
                 <TypeDialog v-model="typedialog" @dialogSelected="typeDialogSelected" />
               </v-flex>
               <v-flex xs4>
-                <v-radio-group v-model="row" row>
-                  <template v-slot:label>
-                    <div>*紧急程度：</div>
-                  </template>
-                  <v-radio label="普通" value="1"></v-radio>
-                  <v-radio label="紧急" value="0"></v-radio>
-                </v-radio-group>
+                <WanhuaRadio />
               </v-flex>
               <v-flex xs4>
                 <v-text-field label="*办公室位置"></v-text-field>
@@ -160,11 +154,13 @@
   import TypeDialog from './TypeDialog';
   import HumanDialog from './HumanDialog';
   import TextfieldReadonly from './TextfieldReadonly';
+  import WanhuaRadio from './WanhuaRadio';
   export default {
     components: {
       TypeDialog,
       HumanDialog,
-      TextfieldReadonly
+      TextfieldReadonly,
+      WanhuaRadio
     },
     data: () => ({
       panel: [0, 1, 2, 3, 4, 5, 6],
