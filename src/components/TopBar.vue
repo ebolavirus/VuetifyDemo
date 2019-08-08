@@ -97,7 +97,7 @@
       </v-card>
     </v-dialog>
     <!-- 保存业务数据 -->
-    <v-alert dismissible elevation="2" v-if="saved" type="info">保存业务数据成功!</v-alert>
+    <v-alert dismissible elevation="2" v-if="saved" type="info">保存成功!</v-alert>
     <!-- 驳回对话框 -->
     <v-dialog v-model="dialog5" max-width="800px">
       <v-card>
