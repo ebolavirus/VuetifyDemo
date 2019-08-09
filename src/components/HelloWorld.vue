@@ -25,7 +25,7 @@
               <v-flex xs12 sm6 md6 lg6>
                 <TextfieldReadonly titleValue="办公室位置（只读）" realValue="信息中心十五楼八层" />
               </v-flex>
-              <v-flex xs12 sm6 md6 lg6>
+              <v-flex xs12>
                 <v-textarea label="服务内容"></v-textarea>
               </v-flex>
             </v-layout>
@@ -212,4 +212,11 @@
   };
 </script>
 <style>
+  .container.grid-list-xl .layout .flex {
+    padding: 0 12px;
+  }
+
+  .v-text-field {
+    padding-top: 0;
+  }
 </style>
