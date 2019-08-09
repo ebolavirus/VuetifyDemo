@@ -13,9 +13,9 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-container grid-list-md>
-        <v-layout>
-          <v-flex xs3>
-            <v-card height="500">
+        <v-layout wrap>
+          <v-flex sm3 order-sm1 v-if="$vuetify.breakpoint.smAndUp">
+            <v-card>
               <v-card-text>
                 <v-text-field label="搜索部门" append-outer-icon="mdi-file-document-box-search" value="信息中心" readonly>
                 </v-text-field>
@@ -23,8 +23,8 @@
               </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs6>
-            <v-card height="500">
+          <v-flex xs12 sm6 order-xs2 order-sm2>
+            <v-card>
               <v-card-text>
                 <v-text-field label="搜索人员" placeholder="ITCODE,中文名，英文名等"
                   append-outer-icon="mdi-file-document-box-search" value="mmsuna"></v-text-field>
@@ -34,8 +34,8 @@
               </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs3>
-            <v-card height="500">
+          <v-flex xs12 sm3 order-xs1 order-sm3>
+            <v-card>
               <v-card-title>选中人员列表</v-card-title>
               <v-card-text>
                 <v-data-table dense :headers="typeheaders2" :items="listSelectValue" :items-per-page="1000" show-select
