@@ -7,39 +7,55 @@
       <span class="mr-2">Vuetify信息服务申请DEMO</span>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn text @click="submitAction()">
-      <span class="mr-2">提交</span>
-    </v-btn>
-    <v-btn text @click="saveAction()">
-      <span class="mr-2">保存</span>
-    </v-btn>
-    <v-btn text @click="rejectAction()">
-      <span class="mr-2">驳回</span>
-    </v-btn>
-    <v-btn text @click="cancelAction()">
-      <span class="mr-2">注销</span>
-    </v-btn>
-    <v-menu offset-y>
-      <template v-slot:activator="{on}">
-        <v-btn text v-on="on">
-          <span class="mr-2">高级▾</span>
-        </v-btn>
-      </template>
-      <v-list>
-        <v-list-item v-for="(item, index) in baritems" :key="index">
-          <v-list-item-title>{{item.title}}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-    <v-btn text>
-      <span class="mr-2">帮助</span>
-    </v-btn>
-    <v-btn text @click="progressGraphAction()">
-      <span class="mr-2">流程图</span>
-    </v-btn>
-    <v-btn text>
-      <span class="mr-2">关闭</span>
-    </v-btn>
+    <template v-if="$vuetify.breakpoint.mdAndUp">
+      <v-btn text @click="submitAction()">
+        <span class="mr-2">提交</span>
+      </v-btn>
+      <v-btn text @click="saveAction()">
+        <span class="mr-2">保存</span>
+      </v-btn>
+      <v-btn text @click="rejectAction()">
+        <span class="mr-2">驳回</span>
+      </v-btn>
+      <v-btn text @click="cancelAction()">
+        <span class="mr-2">注销</span>
+      </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{on}">
+          <v-btn text v-on="on">
+            <span class="mr-2">高级▾</span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-for="(item, index) in baritems" :key="index">
+            <v-list-item-title>{{item.title}}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-btn text>
+        <span class="mr-2">帮助</span>
+      </v-btn>
+      <v-btn text @click="progressGraphAction()">
+        <span class="mr-2">流程图</span>
+      </v-btn>
+      <v-btn text>
+        <span class="mr-2">关闭</span>
+      </v-btn>
+    </template>
+    <template v-else>
+      <v-menu offset-y>
+        <template v-slot:activator="{on}">
+          <v-btn text v-on="on">
+            <span class="mr-2">操作▾</span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-for="(item, index) in barminiitems" :key="index">
+            <v-list-item-title>{{item.title}}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </template>
     <!-- 提交对话框 -->
     <v-dialog v-model="dialog2" max-width="800px">
       <v-card>
@@ -56,16 +72,8 @@
               <v-text-field label="任务类型" value="单一签核"></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-data-table
-                :headers="apHeaders"
-                :items="approvers"
-                :items-per-page="5"
-                class="elevation-1"
-                single-select
-                v-model="selectedApprover"
-                item-key="name"
-                show-select
-              ></v-data-table>
+              <v-data-table :headers="apHeaders" :items="approvers" :items-per-page="5" class="elevation-1"
+                single-select v-model="selectedApprover" item-key="name" show-select></v-data-table>
             </v-flex>
           </v-layout>
         </v-card-text>
@@ -81,14 +89,8 @@
         <v-card-title>流程图</v-card-title>
         <v-card-text>
           <v-layout align-center justify-center>
-            <v-img
-              src="../assets/25.jpg"
-              aspect-ratio="1"
-              class="grey lighten-2"
-              max-width="1000"
-              max-height="680"
-              contain
-            ></v-img>
+            <v-img src="../assets/25.jpg" aspect-ratio="1" class="grey lighten-2" max-width="1000" max-height="680"
+              contain></v-img>
           </v-layout>
         </v-card-text>
         <v-card-actions>
@@ -133,81 +135,107 @@
 </template>
 
 <script>
-export default {
-  model: {
-    prop: "drawerprop",
-    event: "itemChanged"
-  },
-  props: {
-    drawerprop: {
-      type: Boolean,
-      default: true
-    }
-  },
-  computed: {
-    drawer: {
-      get() {
-        return this.drawerprop;
+  export default {
+    model: {
+      prop: "drawerprop",
+      event: "itemChanged"
+    },
+    props: {
+      drawerprop: {
+        type: Boolean,
+        default: true
+      }
+    },
+    computed: {
+      drawer: {
+        get() {
+          return this.drawerprop;
+        },
+        set(value) {
+          this.$emit("itemChanged", value);
+        }
+      }
+    },
+    data: () => ({
+      baritems: [{
+        title: "加签",
+      }, {
+        title: "转办",
+      }, {
+        title: "通知",
+      }],
+      barminiitems: [{
+          title: "提交",
+        }, {
+          title: "驳回",
+        }, {
+          title: "通知",
+        }, {
+          title: "加签",
+        }, {
+          title: "转办",
+        },
+        {
+          title: "注销",
+        }, {
+          title: "关闭",
+        }, {
+          title: "保存",
+        }, {
+          title: "帮助",
+        }, {
+          title: "流程图",
+        }
+      ],
+      dialog2: false,
+      dialog3: false,
+      // 注销对话框开关
+      dialog4: false,
+      // 驳回对话框开关
+      dialog5: false,
+      saved: false,
+      apHeaders: [{
+          text: "名称",
+          align: "left",
+          sortable: false,
+          value: "name"
+        },
+        {
+          text: "部门",
+          value: "dept"
+        }
+      ],
+      approvers: [{
+          name: "何凭",
+          dept: "/万华集团/万华化学/信息中心/基础设施"
+        },
+        {
+          name: "王海洋",
+          dept: "/万华集团/万华化学/信息中心/基础设施"
+        }
+      ],
+      selectedApprover: []
+    }),
+    methods: {
+      drawerAction() {
+        this.$emit("drawerclick");
       },
-      set(value) {
-        this.$emit("itemChanged", value);
+      submitAction() {
+        this.dialog2 = true;
+      },
+      progressGraphAction() {
+        this.dialog3 = true;
+      },
+      saveAction() {
+        console.log("saveAction");
+        this.saved = true;
+      },
+      cancelAction() {
+        this.dialog4 = true;
+      },
+      rejectAction() {
+        this.dialog5 = true;
       }
     }
-  },
-  data: () => ({
-    baritems: [
-      { title: "加签", icon: "dashboard" },
-      { title: "转办", icon: "account_box" },
-      { title: "通知", icon: "gavel" }
-    ],
-    dialog2: false,
-    dialog3: false,
-    // 注销对话框开关
-    dialog4: false,
-    // 驳回对话框开关
-    dialog5: false,
-    saved: false,
-    apHeaders: [
-      {
-        text: "名称",
-        align: "left",
-        sortable: false,
-        value: "name"
-      },
-      { text: "部门", value: "dept" }
-    ],
-    approvers: [
-      {
-        name: "何凭",
-        dept: "/万华集团/万华化学/信息中心/基础设施"
-      },
-      {
-        name: "王海洋",
-        dept: "/万华集团/万华化学/信息中心/基础设施"
-      }
-    ],
-    selectedApprover: []
-  }),
-  methods: {
-    drawerAction() {
-      this.$emit("drawerclick");
-    },
-    submitAction() {
-      this.dialog2 = true;
-    },
-    progressGraphAction() {
-      this.dialog3 = true;
-    },
-    saveAction() {
-      console.log("saveAction");
-      this.saved = true;
-    },
-    cancelAction() {
-      this.dialog4 = true;
-    },
-    rejectAction() {
-      this.dialog5 = true;
-    }
-  }
-};
+  };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <Sidedrawer v-model="draweropen" />
     <TopBar @drawerclick="draweropen = !draweropen" />
     <v-content>
+      <Sidedrawer v-model="draweropen" />
       <HelloWorld />
       <!-- <FootAttachment/> -->
     </v-content>
