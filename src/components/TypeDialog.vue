@@ -9,7 +9,8 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-data-table :headers="typeheaders" :items="typedesserts" :items-per-page="5" class="elevation-1">
+              <v-data-table :headers="typeheaders" :items="typedesserts" @click:row="clickRow" :items-per-page="5"
+                class="elevation-1">
                 <template v-slot:item.action="{ item }">
                   <v-btn class="mb-2" @click="editItem(item)">选择</v-btn>
                 </template>
@@ -160,6 +161,10 @@
         console.log('aaaaa', aItem);
         this.$emit('dialogSelected', aItem);
         this.intypedialog = false;
+      },
+      clickRow(aItem) {
+        console.log("++++++++++++");
+        console.log(aItem);
       }
     }
   };
