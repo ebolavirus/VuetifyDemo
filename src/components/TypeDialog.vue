@@ -2,7 +2,7 @@
   <v-dialog v-model="intypedialog" persistent max-width="900px">
     <v-card>
       <v-card-title>
-        <span>变更类型选择列表</span>
+        <span>变更类型选择列表(类型可行内编辑)</span>
       </v-card-title>
       <v-card-text>
         <small>*特别提醒：正确地选择变更类型将大大加快流程处理速度，如果不清楚该选择何种变更，请致电0535-3388800。</small>
@@ -11,6 +11,15 @@
             <v-flex xs12>
               <v-data-table :headers="typeheaders" :items="typedesserts" @click:row="clickRow" :items-per-page="5"
                 class="elevation-1">
+                <template v-slot:item.name="props">
+                  <v-edit-dialog :return-value.sync="props.item.name" @save="save" @cancel="cancel" @open="open"
+                    @close="close"> {{ props.item.name }}
+                    <template v-slot:input>
+                      <v-text-field v-model="props.item.name" label="Edit" single-line counter>
+                      </v-text-field>
+                    </template>
+                  </v-edit-dialog>
+                </template>
                 <template v-slot:item.action="{ item }">
                   <v-btn class="mb-2" @click="editItem(item)">选择</v-btn>
                 </template>
@@ -165,6 +174,18 @@
       clickRow(aItem) {
         console.log("++++++++++++");
         console.log(aItem);
+      },
+      save() {
+        console.log('aItem saved');
+      },
+      cancel() {
+        console.log('aItem canceled');
+      },
+      open() {
+        console.log('aItem opened');
+      },
+      close() {
+        console.log('aItem closed');
       }
     }
   };
