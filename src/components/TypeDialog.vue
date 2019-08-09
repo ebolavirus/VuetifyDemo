@@ -9,7 +9,7 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-data-table :headers="typeheaders" :items="typedesserts" @click:row="clickRow" :items-per-page="5"
+              <v-data-table :headers="typeheaders" :items="typedesserts"  @item-selected="itemSelected" @click:row="clickRow" :items-per-page="5"
                 class="elevation-1">
                 <template v-slot:item.name="props">
                   <v-edit-dialog :return-value.sync="props.item.name" @save="save" @cancel="cancel" @open="open"
@@ -186,6 +186,10 @@
       },
       close() {
         console.log('aItem closed');
+      },
+      itemSelected(item, value) {
+        console.log('itemSelected');
+        console.log(item)
       }
     }
   };

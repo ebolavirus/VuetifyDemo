@@ -77,7 +77,7 @@
           <v-expansion-panel-content>
             <v-layout wrap>
               <v-flex xs12 sm6 md6 lg6>
-                <v-menu ref="menu" v-model="startDateMenu" :close-on-content-click="false" :return-value.sync="date1"
+                <v-menu ref="menu1" v-model="startDateMenu" :close-on-content-click="false" :return-value.sync="date1"
                   transition="scale-transition" offset-y full-width min-width="290px">
                   <template v-slot:activator="{ on }">
                     <v-text-field v-model="date1" label="接收时间" readonly v-on="on"></v-text-field>
@@ -85,13 +85,13 @@
                   <v-date-picker v-model="date1" no-title scrollable>
                     <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="startDateMenu = false">取消</v-btn>
-                    <v-btn text color="primary" @click="$refs.menu.save(date1)">确定</v-btn>
+                    <v-btn text color="primary" @click="$refs.menu1.save(date1)">确定</v-btn>
                   </v-date-picker>
                 </v-menu>
               </v-flex>
               <v-spacer></v-spacer>
               <v-flex xs12 sm6 md6 lg6>
-                <v-menu ref="menu" v-model="endDateMenu" :close-on-content-click="false" :return-value.sync="date2"
+                <v-menu ref="menu2" v-model="endDateMenu" :close-on-content-click="false" :return-value.sync="date2"
                   transition="scale-transition" offset-y full-width min-width="290px">
                   <template v-slot:activator="{ on }">
                     <v-text-field v-model="date2" label="接收时间" readonly v-on="on"></v-text-field>
@@ -99,7 +99,7 @@
                   <v-date-picker v-model="date2" no-title scrollable>
                     <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="endDateMenu = false">取消</v-btn>
-                    <v-btn text color="primary" @click="$refs.menu.save(date2)">确定</v-btn>
+                    <v-btn text color="primary" @click="$refs.menu2.save(date2)">确定</v-btn>
                   </v-date-picker>
                 </v-menu>
               </v-flex>
