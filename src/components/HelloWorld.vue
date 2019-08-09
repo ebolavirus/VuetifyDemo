@@ -12,13 +12,8 @@
           <v-expansion-panel-content>
             <v-layout wrap>
               <v-flex xs12 sm6 md6 lg6>
-                <v-text-field
-                  label="*服务类型"
-                  append-outer-icon="mdi-file-document-box-search"
-                  readonly
-                  @click:append-outer.stop="typeSelect"
-                  v-model="typeValue"
-                ></v-text-field>
+                <v-text-field label="*服务类型" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="typeSelect" v-model="typeValue"></v-text-field>
                 <TypeDialog v-model="typedialog" @dialogSelected="typeDialogSelected" />
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
@@ -28,7 +23,7 @@
                 <v-text-field label="*办公室位置"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
-                <TextfieldReadonly />
+                <TextfieldReadonly titleValue="办公室位置（只读）" realValue="信息中心十五楼八层" />
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
                 <v-textarea label="服务内容"></v-textarea>
@@ -52,7 +47,7 @@
                 </v-radio-group>
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
-                <v-select :items="serviceTypes" label="服务分类" ></v-select>
+                <v-select :items="serviceTypes" label="服务分类"></v-select>
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
                 <v-text-field label="预估费用" type="number" suffix="元"></v-text-field>
@@ -61,23 +56,13 @@
                 <v-text-field label="实施日期" type="date"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
-                <v-text-field
-                  label="办理人员名称"
-                  append-outer-icon="mdi-file-document-box-search"
-                  readonly
-                  @click:append-outer.stop="dutySelect"
-                  v-model="dutyValue"
-                ></v-text-field>
+                <v-text-field label="办理人员名称" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
                 <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
-                <v-text-field
-                  label="通知人员"
-                  append-outer-icon="mdi-file-document-box-search"
-                  readonly
-                  @click:append-outer.stop="dutySelect"
-                  v-model="dutyValue"
-                ></v-text-field>
+                <v-text-field label="通知人员" append-outer-icon="mdi-file-document-box-search" readonly
+                  @click:append-outer.stop="dutySelect" v-model="dutyValue"></v-text-field>
                 <HumanDialog v-model="dutydialog" @dialogSelected="dutyDialogSelected" />
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
@@ -92,16 +77,8 @@
           <v-expansion-panel-content>
             <v-layout wrap>
               <v-flex xs12 sm6 md6 lg6>
-                <v-menu
-                  ref="menu"
-                  v-model="startDateMenu"
-                  :close-on-content-click="false"
-                  :return-value.sync="date1"
-                  transition="scale-transition"
-                  offset-y
-                  full-width
-                  min-width="290px"
-                >
+                <v-menu ref="menu" v-model="startDateMenu" :close-on-content-click="false" :return-value.sync="date1"
+                  transition="scale-transition" offset-y full-width min-width="290px">
                   <template v-slot:activator="{ on }">
                     <v-text-field v-model="date1" label="接收时间" readonly v-on="on"></v-text-field>
                   </template>
@@ -114,16 +91,8 @@
               </v-flex>
               <v-spacer></v-spacer>
               <v-flex xs12 sm6 md6 lg6>
-                <v-menu
-                  ref="menu"
-                  v-model="endDateMenu"
-                  :close-on-content-click="false"
-                  :return-value.sync="date2"
-                  transition="scale-transition"
-                  offset-y
-                  full-width
-                  min-width="290px"
-                >
+                <v-menu ref="menu" v-model="endDateMenu" :close-on-content-click="false" :return-value.sync="date2"
+                  transition="scale-transition" offset-y full-width min-width="290px">
                   <template v-slot:activator="{ on }">
                     <v-text-field v-model="date2" label="接收时间" readonly v-on="on"></v-text-field>
                   </template>
@@ -198,49 +167,49 @@
 </template>
 
 <script>
-import TypeDialog from "./TypeDialog";
-import HumanDialog from "./HumanDialog";
-import TextfieldReadonly from "./TextfieldReadonly";
-import WanhuaRadio from './WanhuaRadio';
-export default {
-  components: {
-    TypeDialog,
-    HumanDialog,
-    TextfieldReadonly,
-    WanhuaRadio
-  },
-  data: () => ({
-    panel: [0, 1, 2, 3, 4, 5, 6],
-    serviceTypes: ["type1", "type2", "type3", "type4", "type5"],
-    typeValue: "",
-    dutyValue: "",
-    typedialog: false,
-    dutydialog: false,
-    row: "",
-    startDateMenu: false,
-    endDateMenu: false,
-    date1: new Date().toISOString().substr(0, 10),
-    date2: new Date().toISOString().substr(0, 10)
-  }),
-  methods: {
-    typeSelect() {
-      // let aaa = 1;
-      // this.typeValue = aaa;
-      this.typedialog = !this.typedialog;
+  import TypeDialog from "./TypeDialog";
+  import HumanDialog from "./HumanDialog";
+  import TextfieldReadonly from "./TextfieldReadonly";
+  import WanhuaRadio from './WanhuaRadio';
+  export default {
+    components: {
+      TypeDialog,
+      HumanDialog,
+      TextfieldReadonly,
+      WanhuaRadio
     },
-    dutySelect() {
-      this.dutydialog = !this.dutydialog;
-    },
-    typeDialogSelected(value) {
-      console.log("bbbbb", value);
-      this.typeValue = value.name;
-    },
-    dutyDialogSelected(value) {
-      console.log("cccc", value);
-      this.dutyValue = value;
+    data: () => ({
+      panel: [0, 1, 2, 3, 4, 5, 6],
+      serviceTypes: ["type1", "type2", "type3", "type4", "type5"],
+      typeValue: "",
+      dutyValue: "",
+      typedialog: false,
+      dutydialog: false,
+      row: "",
+      startDateMenu: false,
+      endDateMenu: false,
+      date1: new Date().toISOString().substr(0, 10),
+      date2: new Date().toISOString().substr(0, 10)
+    }),
+    methods: {
+      typeSelect() {
+        // let aaa = 1;
+        // this.typeValue = aaa;
+        this.typedialog = !this.typedialog;
+      },
+      dutySelect() {
+        this.dutydialog = !this.dutydialog;
+      },
+      typeDialogSelected(value) {
+        console.log("bbbbb", value);
+        this.typeValue = value.name;
+      },
+      dutyDialogSelected(value) {
+        console.log("cccc", value);
+        this.dutyValue = value;
+      }
     }
-  }
-};
+  };
 </script>
 <style>
 </style>

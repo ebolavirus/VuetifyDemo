@@ -72,8 +72,16 @@
               <v-text-field label="任务类型" value="单一签核"></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-data-table :headers="apHeaders" :items="approvers" :items-per-page="5" class="elevation-1"
-                single-select v-model="selectedApprover" item-key="name" show-select></v-data-table>
+              <v-data-table
+                :headers="apHeaders"
+                :items="approvers"
+                :items-per-page="5"
+                class="elevation-1"
+                single-select
+                v-model="selectedApprover"
+                item-key="name"
+                show-select
+              ></v-data-table>
             </v-flex>
           </v-layout>
         </v-card-text>
@@ -89,8 +97,14 @@
         <v-card-title>流程图</v-card-title>
         <v-card-text>
           <v-layout align-center justify-center>
-            <v-img src="../assets/25.jpg" aspect-ratio="1" class="grey lighten-2" max-width="1000" max-height="680"
-              contain></v-img>
+            <v-img
+              src="../assets/25.jpg"
+              aspect-ratio="1"
+              class="grey lighten-2"
+              max-width="1000"
+              max-height="680"
+              contain
+            ></v-img>
           </v-layout>
         </v-card-text>
         <v-card-actions>
@@ -135,107 +149,122 @@
 </template>
 
 <script>
-  export default {
-    model: {
-      prop: "drawerprop",
-      event: "itemChanged"
-    },
-    props: {
-      drawerprop: {
-        type: Boolean,
-        default: true
-      }
-    },
-    computed: {
-      drawer: {
-        get() {
-          return this.drawerprop;
-        },
-        set(value) {
-          this.$emit("itemChanged", value);
-        }
-      }
-    },
-    data: () => ({
-      baritems: [{
-        title: "加签",
-      }, {
-        title: "转办",
-      }, {
-        title: "通知",
-      }],
-      barminiitems: [{
-          title: "提交",
-        }, {
-          title: "驳回",
-        }, {
-          title: "通知",
-        }, {
-          title: "加签",
-        }, {
-          title: "转办",
-        },
-        {
-          title: "注销",
-        }, {
-          title: "关闭",
-        }, {
-          title: "保存",
-        }, {
-          title: "帮助",
-        }, {
-          title: "流程图",
-        }
-      ],
-      dialog2: false,
-      dialog3: false,
-      // 注销对话框开关
-      dialog4: false,
-      // 驳回对话框开关
-      dialog5: false,
-      saved: false,
-      apHeaders: [{
-          text: "名称",
-          align: "left",
-          sortable: false,
-          value: "name"
-        },
-        {
-          text: "部门",
-          value: "dept"
-        }
-      ],
-      approvers: [{
-          name: "何凭",
-          dept: "/万华集团/万华化学/信息中心/基础设施"
-        },
-        {
-          name: "王海洋",
-          dept: "/万华集团/万华化学/信息中心/基础设施"
-        }
-      ],
-      selectedApprover: []
-    }),
-    methods: {
-      drawerAction() {
-        this.$emit("drawerclick");
+export default {
+  model: {
+    prop: "drawerprop",
+    event: "itemChanged"
+  },
+  props: {
+    drawerprop: {
+      type: Boolean,
+      default: true
+    }
+  },
+  computed: {
+    drawer: {
+      get() {
+        return this.drawerprop;
       },
-      submitAction() {
-        this.dialog2 = true;
-      },
-      progressGraphAction() {
-        this.dialog3 = true;
-      },
-      saveAction() {
-        console.log("saveAction");
-        this.saved = true;
-      },
-      cancelAction() {
-        this.dialog4 = true;
-      },
-      rejectAction() {
-        this.dialog5 = true;
+      set(value) {
+        this.$emit("itemChanged", value);
       }
     }
-  };
+  },
+  data: () => ({
+    baritems: [
+      {
+        title: "加签"
+      },
+      {
+        title: "转办"
+      },
+      {
+        title: "通知"
+      }
+    ],
+    barminiitems: [
+      {
+        title: "提交"
+      },
+      {
+        title: "驳回"
+      },
+      {
+        title: "通知"
+      },
+      {
+        title: "加签"
+      },
+      {
+        title: "转办"
+      },
+      {
+        title: "注销"
+      },
+      {
+        title: "关闭"
+      },
+      {
+        title: "保存"
+      },
+      {
+        title: "帮助"
+      },
+      {
+        title: "流程图"
+      }
+    ],
+    dialog2: false,
+    dialog3: false,
+    // 注销对话框开关
+    dialog4: false,
+    // 驳回对话框开关
+    dialog5: false,
+    saved: false,
+    apHeaders: [
+      {
+        text: "名称",
+        align: "left",
+        sortable: false,
+        value: "name"
+      },
+      {
+        text: "部门",
+        value: "dept"
+      }
+    ],
+    approvers: [
+      {
+        name: "何凭",
+        dept: "/万华集团/万华化学/信息中心/基础设施"
+      },
+      {
+        name: "王海洋",
+        dept: "/万华集团/万华化学/信息中心/基础设施"
+      }
+    ],
+    selectedApprover: []
+  }),
+  methods: {
+    drawerAction() {
+      this.$emit("drawerclick");
+    },
+    submitAction() {
+      this.dialog2 = true;
+    },
+    progressGraphAction() {
+      this.dialog3 = true;
+    },
+    saveAction() {
+      console.log("saveAction");
+      this.saved = true;
+    },
+    cancelAction() {
+      this.dialog4 = true;
+    },
+    rejectAction() {
+      this.dialog5 = true;
+    }
+  }
+};
 </script>

@@ -6,8 +6,9 @@
           基本信息
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-data-table hide-default-header hide-default-footer :headers="headers" :items="desserts"
-            class="elevation-1"></v-data-table>
+          <TextfieldReadonly v-for="(item, index) in desserts" :key="index" :titleValue="item.name"
+            :realValue="item.calories">
+          </TextfieldReadonly>
         </v-expansion-panel-content>
       </v-expansion-panel>
       <v-expansion-panel>
@@ -66,7 +67,11 @@
 </template>
 
 <script>
+  import TextfieldReadonly from "./TextfieldReadonly";
   export default {
+    components: {
+      TextfieldReadonly
+    },
     model: {
       prop: 'drawerprop',
       event: 'itemChanged'
