@@ -117,6 +117,7 @@
               </v-flex>
               <v-flex xs12 sm6 md6 lg6>
                 <v-textarea label="结果及建议"></v-textarea>
+                <MuseAlert></MuseAlert>
               </v-flex>
             </v-layout>
           </v-expansion-panel-content>
@@ -171,12 +172,14 @@
   import HumanDialog from "./HumanDialog";
   import TextfieldReadonly from "./TextfieldReadonly";
   import WanhuaRadio from './WanhuaRadio';
+  import MuseAlert from './Alert'
   export default {
     components: {
       TypeDialog,
       HumanDialog,
       TextfieldReadonly,
-      WanhuaRadio
+      WanhuaRadio,
+      MuseAlert
     },
     data: () => ({
       panel: [0, 1, 2, 3, 4, 5, 6],
